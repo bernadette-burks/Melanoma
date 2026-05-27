@@ -1,0 +1,2 @@
+Predicted class index for skin_lesion.jpg: 1
+Predicted class label for skin_lesion.jpg: Malignant
