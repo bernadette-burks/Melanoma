@@ -16,7 +16,7 @@ from src.model_training import SimpleCNN as MelanomaCNN  # Import the CNN archit
 
 # Import the CNN architecture from model_training.py
 model = MelanomaCNN()
-image_path = 'skin_lesion.jpg'  # Replace with the actual path to the new image you want to predict
+image_path = 'assets/skin_lesion.jpg'  # Replace with the actual path to the new image you want to predict
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Use GPU if available, otherwise use CPU
 
 def predict_image(model, image_path, device):
@@ -47,8 +47,8 @@ def predict_image(model, image_path, device):
 
 if __name__ == "__main__":
     # Example usage
-    model_path = 'melanoma_cnn_model.pth'
-    image_path = 'skin_lesion.jpg'
+    model_path = 'models/melanoma_cnn_model.pth'
+    image_path = 'assets/skin_lesion4.jpg'
     
     # Make a prediction
     predicted_class = predict_image(model, image_path, device)
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     print(f'Predicted class label for {image_path}: {class_labels[predicted_class]}')
 
     # Save the prediction result to a file
-    with open(f'prediction_result_{os.path.basename(image_path)}.txt', 'w') as f:
+    with open(f'results/prediction_result_{os.path.basename(image_path)}.txt', 'w') as f:
         f.write(f'Predicted class index for {image_path}: {predicted_class}\n')
         f.write(f'Predicted class label for {image_path}: {class_labels[predicted_class]}\n')
 

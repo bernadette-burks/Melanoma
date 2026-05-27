@@ -53,6 +53,11 @@ def train_model(train_loader, test_loader, num_epochs=10):
     optimizer = Adam(model.parameters(), lr=0.001)
     print(f"Step 2/{total_steps}: Model training setup completed. Starting training process...")
 
+    # Set model to train on GPU if available
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+    print(f"Using device: {device}")
+
     # Training loop 
     for epoch in range(num_epochs):
         model.train()  # Set the model to training mode
@@ -61,6 +66,7 @@ def train_model(train_loader, test_loader, num_epochs=10):
 
         # Iterate over the training data
         for images, labels in train_loader:
+            images, labels = images.to(device), labels.to(device)  # Move data to the same device as the model
             optimizer.zero_grad()  # Clear gradients
             outputs = model(images)  # Forward pass
             loss = criterion(outputs, labels)  # Calculate loss
@@ -74,8 +80,8 @@ def train_model(train_loader, test_loader, num_epochs=10):
     print(f"Step 5/{total_steps}: Finished Training")
 
     # Save the trained model as a .pth file
-    torch.save(model.state_dict(), 'melanoma_cnn_model.pth')
-    print(f"Step 6/{total_steps}: Model saved as melanoma_cnn_model.pth")
+    torch.save(model.state_dict(), 'models/melanoma_cnn_model.pth')
+    print(f"Step 6/{total_steps}: Model saved as models/melanoma_cnn_model.pth")
 
     # Return the trained model
     return model
