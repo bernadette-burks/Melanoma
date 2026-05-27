@@ -1,4 +1,4 @@
-# Melanoma Detection Using Computer Vision & Deep Learning
+# Melanoma Detection Using Computer Vision & Deep Learning ⚕️
 Determine if a skin lesion appears Benign (0) or Malignant (1) using a Convolutional Neural Network (CNN) Computer Vision AI Model Using Pytorch/Torchvision NN Modules ❤️‍🩹
 
 #
